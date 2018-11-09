@@ -9,5 +9,11 @@
 
   <body>
     <h1>Testing cookies with Github Pages</h1>
+    <div class="cookie"></div>
+
+    <script>
+      document.cookie = 'userName=Vasya';
+      document.querySelector('.cookie').innerHTML = 'qwe';
+    </script>
   </body>
 </html>
