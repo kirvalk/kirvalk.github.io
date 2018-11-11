@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>for iframe</title>
+    <style>
+      body {
+        background-color: lightgray;
+      }
+    </style>
   </head>
 
   <body>
@@ -12,8 +17,16 @@
     <div class="cookie"></div>
 
     <script>
-      document.cookie = 'userName=Vasya';
+      document.cookie = 'userName=Johnny Knoxville';
       document.querySelector('.cookie').innerHTML = document.cookie;
+
+      window.parent.postMessage(document.cookie, '*');
+
+      const newUrl = location.href.split('?backurl=');
+
+      if (newUrl[1]) {
+        location.href = newUrl[1];
+      }
     </script>
   </body>
 </html>
