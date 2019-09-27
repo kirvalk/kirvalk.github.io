@@ -13,20 +13,20 @@
   </head>
 
   <body>
-    <h1>Это сайт открытый в iframe</h1>
+<!--     <h1>Это сайт открытый в iframe</h1> -->
     <div class="cookie"></div>
 
-    <script>
-      document.cookie = 'userName=Johnny Knoxville';
-      document.querySelector('.cookie').innerHTML = document.cookie;
+<!--     <script> -->
+<!--       document.cookie = 'userName=Johnny Knoxville'; -->
+<!--       document.querySelector('.cookie').innerHTML = document.cookie; -->
 
-      window.parent.postMessage(document.cookie, '*');
+<!--       window.parent.postMessage(document.cookie, '*'); -->
+<!--  -->
+<!--       const newUrl = location.href.split('?backurl='); -->
 
-      const newUrl = location.href.split('?backurl=');
-
-      if (newUrl[1]) {
-        location.href = newUrl[1];
-      }
-    </script>
+<!--       if (newUrl[1]) { -->
+<!--         location.href = newUrl[1]; -->
+<!--       } -->
+<!--     </script> -->
   </body>
 </html>
