@@ -1,13 +1,20 @@
 Cookies.defaults = {
   expires: 365,
   path: '',
-  domain: window.location.hostname.split('.').slice(-2).join('.'),
+  domain: window.location.hostname
+    .split('.')
+    .slice(-2)
+    .join('.')
 };
 var uid = document.getElementById('uid');
 var btn = document.getElementById('test');
 
 function ready(fn) {
-  if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){
+  if (
+    document.attachEvent
+      ? document.readyState === 'complete'
+      : document.readyState !== 'loading'
+  ) {
     fn();
   } else {
     document.addEventListener('DOMContentLoaded', fn);
@@ -15,15 +22,12 @@ function ready(fn) {
 }
 
 function storageAccessAPISupported() {
-  return (
-    'hasStorageAccess' in document &&
-    'requestStorageAccess' in document
-  );
+  return 'hasStorageAccess' in document && 'requestStorageAccess' in document;
 }
 
 function accessStorage(fn) {
-  document.hasStorageAccess()
-    .then(function (hasAccess){
+  document.hasStorageAccess().then(
+    function(hasAccess) {
       if (hasAccess) {
         console.info('Storage API Access already granted');
         fn();
@@ -33,18 +37,22 @@ function accessStorage(fn) {
       console.info('no existing Storage API Access ...');
       console.info('requesting Storage API Access ...');
 
-      document.requestStorageAccess()
-        .then(function () {
+      document.requestStorageAccess().then(
+        function() {
           console.info('Storage API Access granted.');
           fn();
           return;
-        }, function (){
+        },
+        function() {
           console.warn('Storage API Access denied.');
-        });
-    }, function (reason) {
+        }
+      );
+    },
+    function(reason) {
       console.warn('something went wrong ...');
       console.error(reason);
-    });
+    }
+  );
 }
 
 function onUpdated(event) {
@@ -53,15 +61,15 @@ function onUpdated(event) {
 
 function updateId() {
   var key = 'uid';
-  var newId = uuid.v4();
+  var newId = uuidv4();
   Cookies.set(key, newId);
   var data = Cookies.get(key) || '(none)';
   var updateEvent = new CustomEvent('uid:updated', {
     bubbles: true,
     cancelable: false,
     detail: {
-      uid: data,
-    },
+      uid: data
+    }
   });
   uid.dispatchEvent(updateEvent);
 }
@@ -76,8 +84,8 @@ function init() {
     bubbles: true,
     cancelable: false,
     detail: {
-      uid: data,
-    },
+      uid: data
+    }
   });
   uid.dispatchEvent(updateEvent);
   btn.innerText = 'Update ID';
@@ -99,4 +107,4 @@ function onReady() {
   init();
 }
 
-ready(onReady)
+ready(onReady);
