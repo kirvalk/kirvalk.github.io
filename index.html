@@ -45,11 +45,15 @@
             }
             return result;
           })
-          .then(result => {
-            console.log('result', result);
+          .then(hasAccess => {
+            console.log('hasAccess', hasAccess);
+            if (!hasAccess) {
+              return document.requestStorageAccess();
+            }
+          })
+          .then(accessStatus => {
+            console.log('accessStatus', accessStatus);
           });
-
-        console.log('hasAccessPromise', hasAccessPromise);
       }
 
       // window.parent.postMessage(document.cookie, '*');
