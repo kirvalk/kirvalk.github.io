@@ -53,9 +53,13 @@
               btn.addEventListener('click', ev => {
                 document
                   .requestStorageAccess()
-                  .then(accessStatus =>
-                    console.log('accessStatus', accessStatus)
-                  );
+                  .then(accessStatus => {
+                    console.log('accessStatus', accessStatus);
+                    document.cookie = 'userName=Johnny Knoxville';
+                    document.querySelector('.cookie').innerHTML =
+                      document.cookie;
+                  })
+                  .chatch(err => alert(err));
               });
               body.appendChild(btn);
             }
