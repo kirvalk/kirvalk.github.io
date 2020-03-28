@@ -56,6 +56,7 @@ function attachEventHandlers() {
 
 function setCookie() {
   console.log('setting cookie');
+  document.cookie = 'userName=Johnny Knoxville';
 }
 
 function onReady() {
