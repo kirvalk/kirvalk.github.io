@@ -34,20 +34,18 @@
       document.cookie = 'userName=Johnny Knoxville';
       document.querySelector('.cookie').innerHTML = document.cookie;
 
-      if (browser === 'Chrome') {
-        return;
+      if (browser === 'Firefox') {
+        const hasAccessPromise = document.hasStorageAccess();
+        hasAccessPromise.then(result => {
+          if (result) {
+            body.style.backgroundColor = 'green';
+          } else {
+            body.style.backgroundColor = 'red';
+          }
+        });
+
+        console.log('hasAccessPromise', hasAccessPromise);
       }
-
-      const hasAccessPromise = document.hasStorageAccess();
-      hasAccessPromise.then(result => {
-        if (result) {
-          body.style.backgroundColor = 'green';
-        } else {
-          body.style.backgroundColor = 'red';
-        }
-      });
-
-      console.log('hasAccessPromise', hasAccessPromise);
 
       // window.parent.postMessage(document.cookie, '*');
       // const newUrl = location.href.split('?backurl=');
