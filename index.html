@@ -48,7 +48,16 @@
           .then(hasAccess => {
             console.log('hasAccess', hasAccess);
             if (!hasAccess) {
-              return document.requestStorageAccess();
+              const btn = document.createElement('button');
+              btn.innerHTML = 'Try to get access';
+              btn.addEventListener('click', ev => {
+                document
+                  .requestStorageAccess()
+                  .then(accessStatus =>
+                    console.log('accessStatus', accessStatus)
+                  );
+              });
+              body.appendChild(btn);
             }
           })
           .then(accessStatus => {
