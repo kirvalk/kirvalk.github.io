@@ -34,8 +34,11 @@
       document.cookie = 'userName=Johnny Knoxville';
       document.querySelector('.cookie').innerHTML = document.cookie;
 
-      const hasAccessPromise = document.hasStorageAccess();
+      if (browser === 'Chrome') {
+        return;
+      }
 
+      const hasAccessPromise = document.hasStorageAccess();
       hasAccessPromise.then(result => {
         if (result) {
           body.style.backgroundColor = 'green';
