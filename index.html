@@ -17,10 +17,19 @@
     <div class="cookie"></div>
 
     <script>
+      const body = document.querySelector('body');
       document.cookie = 'userName=Johnny Knoxville';
       document.querySelector('.cookie').innerHTML = document.cookie;
 
-      const hasAccess = document.hasStorageAccess();
+      const hasAccessPromise = document.hasStorageAccess();
+
+      hasAccessPromise.then(result => {
+        if (result) {
+          body.style.backgroundColor = 'green';
+        } else {
+          body.style.backgroundColor = 'red';
+        }
+      });
 
       console.log('hasAccess', hasAccess);
 
