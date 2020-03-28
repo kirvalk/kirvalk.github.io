@@ -14,14 +14,23 @@
 
   <body>
     <div>Github</div>
-    <br />
+    <div class="browser"></div>
     <br />
     <br />
     <div class="cookie"></div>
 
     <script>
       const body = document.querySelector('body');
-
+      const ua = window.navigator.userAgent;
+      let browser = 'Unknown';
+      if (ua.includes('Chrome')) {
+        browser = 'Chrome';
+      }
+      if (ua.includes('Firefox')) {
+        browser = 'Firefox';
+      }
+      const text = 'Страница открыта в: ' + browser;
+      document.querySelector('.browser').innerHTML = text;
       document.cookie = 'userName=Johnny Knoxville';
       document.querySelector('.cookie').innerHTML = document.cookie;
 
