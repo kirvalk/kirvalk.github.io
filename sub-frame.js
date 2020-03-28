@@ -1,25 +1,4 @@
-Cookies.defaults = {
-  expires: 365,
-  path: '',
-  domain: window.location.hostname
-    .split('.')
-    .slice(-2)
-    .join('.')
-};
-var uid = document.getElementById('uid');
 var btn = document.getElementById('test');
-
-function ready(fn) {
-  if (
-    document.attachEvent
-      ? document.readyState === 'complete'
-      : document.readyState !== 'loading'
-  ) {
-    fn();
-  } else {
-    document.addEventListener('DOMContentLoaded', fn);
-  }
-}
 
 function storageAccessAPISupported() {
   return 'hasStorageAccess' in document && 'requestStorageAccess' in document;
@@ -55,45 +34,16 @@ function accessStorage(fn) {
   );
 }
 
-function onUpdated(event) {
-  renderUid(event.detail.uid);
-}
-
-function updateId() {
-  var key = 'uid';
-  var newId = uuidv4();
-  Cookies.set(key, newId);
-  var data = Cookies.get(key) || '(none)';
-  var updateEvent = new CustomEvent('uid:updated', {
-    bubbles: true,
-    cancelable: false,
-    detail: {
-      uid: data
-    }
-  });
-  uid.dispatchEvent(updateEvent);
-}
-
-function renderUid(data) {
-  uid.innerText = data;
-}
-
 function init() {
-  var data = Cookies.get('uid') || '(none)';
-  var updateEvent = new CustomEvent('uid:updated', {
-    bubbles: true,
-    cancelable: false,
-    detail: {
-      uid: data
-    }
-  });
-  uid.dispatchEvent(updateEvent);
-  btn.innerText = 'Update ID';
+  btn.innerText = 'GOGOGO';
 }
 
 function attachEventHandlers() {
-  uid.addEventListener('uid:updated', onUpdated);
-  btn.addEventListener('click', accessStorage.bind(null, updateId));
+  btn.addEventListener('click', accessStorage.bind(null, setCookie));
+}
+
+function setCookie() {
+  console.log('setting cookie');
 }
 
 function onReady() {
