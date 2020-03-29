@@ -47,6 +47,9 @@ function accessStorage(fn) {
 }
 
 function init() {
+  console.log('Trying to get document.cookie');
+  console.log('----->', document.cookie);
+  document.querySelector('#cookies').innerHTML = document.cookie;
   btn.innerText = 'GOGOGO';
 }
 
