@@ -46,11 +46,15 @@ function accessStorage(fn) {
   );
 }
 
-function init() {
+function getCookies() {
   console.log('Trying to get document.cookie');
   console.log('----->', document.cookie);
   document.querySelector('#cookies').innerHTML = document.cookie;
+}
+
+function init() {
   btn.innerText = 'GOGOGO';
+  getCookies();
 }
 
 function attachEventHandlers() {
@@ -60,6 +64,7 @@ function attachEventHandlers() {
 function setCookie() {
   console.log('setting cookie');
   document.cookie = 'userName=Johnny Knoxville';
+  getCookies();
 }
 
 function onReady() {
